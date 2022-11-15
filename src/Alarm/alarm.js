@@ -7,6 +7,7 @@ import Ring from "./alarm.mp3";
 
 
 const setAlarm = document.getElementById("set");
+const stopAlarm = document.getElementById("stop");
 let option = document.getElementsByTagName("option");
 let optionValues = option.value;
 let ringtone = new Audio(Ring);
@@ -75,6 +76,7 @@ function setAlarmClick() {
     return (alarmTime = false);
   }
 
+  alert("Alarm is set successfully")
   let alarmTime =
     document.getElementById("hrs").value +
     ":" +
@@ -90,6 +92,10 @@ function setAlarmClick() {
   setAlarm.innerText = "Stop Alarm";
 }
 
+function pauseAlarm() {
+    ringtone.pause()
+}
+
 const alarm = () => {
   return (
     <>
@@ -97,14 +103,14 @@ const alarm = () => {
         <div className="bg-yellow-200 text-black h-96 w-96 mx-32 my-10 rounded-t-full sm:mx-40 md:mx-[15rem] lg:mx-[25rem] xl:mx-[35rem] xl:h-[30rem]">
           <div className="justify-center mt-48 mx-36 w-96">
             <img src={Clock} alt="not available" className="mt-20 w-28 h-32 pt-5 xl:pt-10 xl:h-40" />
-            <h1 className="text-lg mt-4 mx-2" id="dayTime">
+            <h1 className="text-xl mt-4 mx-1" id="dayTime">
               00:00:00 AM/PM
             </h1>
           </div>
 
           <div className="setAlarm flex mt-10 mx-10 space-x-5">
             <select
-              className="outline-offset-4 text-black h-10 w-24 rounded-lg"
+              className="outline-offset-4 text-black h-10 w-24 rounded-lg hover:bg-slate-100"
               id="hrs"
             >
               <option value="Hours" selected hidden onClick>
@@ -114,7 +120,7 @@ const alarm = () => {
             </select>
 
             <select
-              className="second outline-offset-4 text-black h-10 w-24 rounded-lg"
+              className="second outline-offset-4 text-black h-10 w-24 rounded-lg hover:bg-slate-100"
               id="mins"
             >
               <option value="Minutes" selected hidden>
@@ -124,7 +130,7 @@ const alarm = () => {
             </select>
 
             <select
-              className="outline-offset-4 text-black h-10 w-24 rounded-lg"
+              className="outline-offset-4 text-black h-10 w-24 rounded-lg hover:bg-slate-100"
               id="ampm"
             >
               <option value="AM/PM" selected hidden>
@@ -135,11 +141,18 @@ const alarm = () => {
             </select>
           </div>
           <button
-            className="rounded-full bg-red-900 text-white mx-[7rem] mt-14 h-14 w-40 text-xl font-bold active:bg-red-500 hover:bg-red-800"
+            className="rounded-full bg-red-900 text-white mx-[7rem] mt-12 h-14 w-40 text-lg font-bold active:bg-red-500 hover:bg-red-800"
             id="set"
             onClick={setAlarmClick}
           >
             Set Alarm
+          </button>
+          <button
+            className="rounded-full bg-red-900 text-white mx-[7rem] mt-2 h-12 w-40 text-lg font-bold active:bg-red-500 hover:bg-red-800"
+            id="stop"
+            onClick={pauseAlarm}
+          >
+            Stop Alarm
           </button>
         </div>
       </div>
